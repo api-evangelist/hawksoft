@@ -1,0 +1,59 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: HawkSoft
+providerId: hawksoft
+created: '2026-07-10'
+modified: '2026-07-10'
+reconciled: false
+tags:
+- Insurance
+- Partner API
+- Rate Limiting
+- Quotas
+description: >-
+  HawkSoft does not publish numeric per-minute or per-day rate limits for the
+  Partner API in its public documentation. The one concrete throughput constraint
+  documented is a batch cap - the client-list endpoint accepts up to 200 client
+  ids per request. HawkSoft's API Terms further restrict usage patterns: partners
+  may not perform bulk operations against single-contact endpoints (or the
+  reverse), which functions as a usage-shape limit rather than a numeric rate.
+  Actual per-partner quotas, if any, are governed by the partner agreement and
+  are not disclosed publicly.
+notes: >-
+  Numeric request-rate limits are not documented as of the review date. The
+  200-client batch limit is from the public Partner API docs; the bulk-vs-single
+  usage restriction is from the API Terms. Confirm any per-partner quota with
+  HawkSoft during onboarding.
+sources:
+- https://partner.hawksoft.app/v3/api.html
+- https://partner.hawksoft.app/v1/api.html
+- https://www.hawksoft.com/terms/api/
+responseCodes:
+  throttled: 429
+limits:
+- name: Client Batch Size
+  scope: request
+  metric: clients
+  limit: 200
+  notes: The batch client-list POST accepts up to 200 client ids per request.
+- name: Partner Request Rate
+  scope: partner
+  metric: requests
+  limit: not published
+  notes: No numeric per-minute or per-day request limit is documented publicly.
+- name: Usage Shape Restriction
+  scope: partner
+  metric: operations
+  limit: contractual
+  notes: API Terms prohibit bulk operations on single-contact endpoints and vice versa.
+policies:
+- name: Incremental Sync
+  description: Use the changed-clients endpoint with a since timestamp to pull only modified records rather than polling full lists.
+- name: Backoff Strategy
+  description: Clients should implement exponential backoff with jitter and honor Retry-After on 429 responses.
+- name: Agency Opt-In
+  description: A partner may only access an agency's data after that agency opts in to share it; access is revocable.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

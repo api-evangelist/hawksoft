@@ -1,0 +1,88 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: HawkSoft
+providerId: hawksoft
+created: '2026-07-10'
+modified: '2026-07-10'
+reconciled: false
+tags:
+- Insurance
+- Agency Management System
+- Partner API
+- Gated API
+- Plans
+description: >-
+  HawkSoft has two distinct cost surfaces. First, the HawkSoft agency management
+  system itself is sold to agencies on a per-seat subscription (widely reported
+  around a base fee plus roughly $94 per user per month, with a starting point
+  near $250 per month, plus setup and training) - HawkSoft does not publish exact
+  figures and quotes each agency individually. Second, the Partner API is a
+  separate program for third-party technology vendors: HawkSoft's API Terms
+  state a $3,000 per year API fee, payable in advance, which may be waived with
+  prior written consent from HawkSoft. An agency must be an active HawkSoft
+  subscriber and must opt in to share its data before a partner can access it.
+notes: >-
+  AMS per-seat pricing figures are from third-party review sites and are not
+  officially published by HawkSoft; confirm via a direct quote. The $3,000/year
+  API fee is from HawkSoft's published API Terms & Conditions. Reconcile both
+  before relying on them.
+sources:
+- https://www.hawksoft.com/terms/api/
+- https://www.hawksoft.com/about/partners/
+- https://blog.hawksoft.com/guide-to-ams-pricing
+- https://www.g2.com/products/hawksoft/pricing
+plans:
+- id: hawksoft-ams-subscription
+  name: HawkSoft AMS Subscription (Agency)
+  type: paid
+  description: >-
+    Per-seat subscription to the HawkSoft agency management system for
+    independent P and C agencies. Reported as a base fee plus a per-user monthly
+    fee (about $94 per user), starting near $250 per month, with additional
+    one-time setup and training. Custom quoted; no published minimum-length
+    contracts or data-extraction fees.
+  entries:
+  - label: Per User Monthly
+    name: per_user_monthly
+    type: usage
+    metric: users
+    limit: -1
+    timeFrame: month
+    geo: global
+    unit: 1
+    price: approx $94 per user per month (custom quote)
+    userMultiplied: true
+  elements:
+  - name: Client and Policy Management
+  - name: Documentation and Workflow
+  - name: Accounting
+  - name: Setup and Training (one-time)
+- id: hawksoft-partner-api
+  name: Partner API Program (Vendor)
+  type: paid
+  description: >-
+    Gated API access for approved third-party technology vendors. HawkSoft's API
+    Terms state a $3,000 per year fee, paid in advance, which may be waived with
+    prior written consent. Non-exclusive, revocable license; developers may not
+    be HawkSoft competitors. Requires agency opt-in for each data-sharing
+    relationship.
+  entries:
+  - label: Annual API Fee
+    name: annual_api_fee
+    type: flat
+    metric: contract
+    limit: -1
+    timeFrame: year
+    geo: global
+    unit: 1
+    price: $3,000 per year (waivable with written consent)
+    userMultiplied: false
+  elements:
+  - name: Partner-Issued Credentials
+  - name: Read Access (Clients, Policies, Contacts, Offices)
+  - name: Write-Back (Log Notes, Attachments, Receipts)
+  - name: Partner Documentation and Best Practices
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

@@ -1,0 +1,88 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: HawkSoft
+providerId: hawksoft
+created: '2026-07-10'
+modified: '2026-07-10'
+reconciled: false
+tags:
+- Insurance
+- Agency Management System
+- Partner API
+- FinOps
+- Cost Management
+- FOCUS
+description: >-
+  FinOps view of HawkSoft spend. Two cost streams exist. For an agency, cost is
+  the HawkSoft AMS subscription, billed per seat monthly (a base fee plus roughly
+  $94 per user per month, custom quoted) plus one-time setup and training - a
+  predictable per-user run-rate rather than usage-metered API spend. For a
+  technology partner, cost is the Partner API program's $3,000 per year fee
+  (waivable), a flat annual charge independent of call volume. Neither surface is
+  metered by API request volume, so FinOps attention centers on seat count
+  (agency side) and the flat annual partner fee (vendor side).
+notes: >-
+  AMS per-seat figures are third-party-reported and not officially published;
+  the $3,000/year API fee is from HawkSoft's API Terms. Verify both directly.
+sources:
+- https://www.hawksoft.com/terms/api/
+- https://www.hawksoft.com/about/partners/
+- https://blog.hawksoft.com/guide-to-ams-pricing
+- https://focus.finops.org/focus-specification/v1-3/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: HawkSoft
+serviceCategory: Insurance Software
+billingModel:
+  pricingCategory: Subscription
+  billingFrequency: Monthly
+  billingCurrency: USD
+  chargeCategories:
+  - Purchase
+  - Usage
+focusColumns:
+  ServiceName: HawkSoft Agency Management System
+  ServiceCategory: Insurance Software
+  ProviderName: HawkSoft
+  PublisherName: HawkSoft
+  InvoiceIssuerName: HawkSoft
+  BillingCurrency: USD
+  ChargeCategory: Purchase
+  PricingCategory: Subscription
+meters:
+- name: user_seats
+  description: Active HawkSoft AMS user seats billed per month on the agency subscription.
+  unit: users
+  aggregation: sum
+  dimensions:
+  - agency
+  - office
+- name: partner_api_fee
+  description: Flat annual Partner API program fee charged to an approved technology vendor.
+  unit: contract
+  aggregation: sum
+  dimensions:
+  - partner
+- name: setup_training
+  description: One-time setup and training charges at onboarding for an agency.
+  unit: contract
+  aggregation: sum
+  dimensions:
+  - agency
+principles:
+- name: Visibility
+  description: Track active seat count per office and the flat annual API fee; neither scales with API call volume.
+- name: Allocation
+  description: Map seats to offices/teams; attribute the partner API fee to the integration product it enables.
+- name: Optimization
+  description: Right-size seat count to active staff; pursue the API-fee waiver where HawkSoft grants it; reuse incremental sync to keep integration infrastructure light.
+- name: Accountability
+  description: Review seat count and renewal terms annually; assign an owner for the partner agreement and its renewal.
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com

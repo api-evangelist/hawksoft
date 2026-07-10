@@ -1,0 +1,91 @@
+aid: hawksoft
+name: HawkSoft
+review:
+  question: Does HawkSoft expose a documented public WebSocket API?
+  answer: false
+  date: '2026-07-10'
+  reviewer: API Evangelist
+  asyncapiSpecCreated: false
+  asyncapiScopeNote: |
+    No AsyncAPI document was authored. HawkSoft's Partner API is
+    request/response REST over HTTPS (HTTP Basic auth, version=3.0 query
+    parameter). There is no server-push transport (WebSocket or SSE) documented
+    on HawkSoft's API to model. Partners keep data in sync by polling the
+    changed-clients endpoint with a since timestamp, not by subscribing to a
+    realtime stream. There is no message-driven surface to describe in AsyncAPI.
+findings:
+  summary: |
+    HawkSoft does not publish a documented public WebSocket API. HawkSoft is an
+    insurance agency management system (AMS). Its programmatic surface is the
+    Partner API, a REST API over HTTPS at base https://integration.hawksoft.app,
+    authenticated with HTTP Basic credentials and requiring a version=3.0 query
+    parameter on V3.0 requests. The API is gated: HawkSoft issues credentials
+    only to vetted, approved API Partners, and each agency must opt in to share
+    its data. Documentation is publicly readable (no NDA) at
+    https://partner.hawksoft.app for V1.8 and V3.0. All documented endpoints are
+    request/response REST - list agencies/offices, read clients (single, batch
+    up to 200, changed-since, search), and write back log notes, attachments,
+    and receipts. No realtime, bidirectional, or streaming WebSocket (ws:// or
+    wss://) endpoint is documented anywhere in HawkSoft's Partner API.
+  accessModel: |
+    Gated partner API. Public docs, private credentials. An agency must be an
+    active HawkSoft subscriber and opt in before a partner can access its data.
+    HawkSoft's API Terms state a $3,000/year API fee (waivable with written
+    consent), a non-exclusive revocable license, and a prohibition on
+    competitors and on bulk-vs-single-contact usage. Endpoint paths in the
+    accompanying OpenAPI are taken from the public documentation; request and
+    response schemas are modeled from the docs because the gated credentials
+    prevent exercising the live API.
+  transports:
+    - protocol: REST
+      scheme: https
+      baseURL: https://integration.hawksoft.app
+      documented: true
+      note: Partner API V1.8 and V3.0. HTTP Basic auth; V3.0 requires version=3.0 query param.
+    - protocol: WebSocket
+      scheme: wss
+      documented: false
+      note: No WebSocket endpoint is documented anywhere in HawkSoft's Partner API as of the review date.
+  endpointsFromPublicDocs:
+    - GET  https://integration.hawksoft.app/vendor/agencies
+    - GET  https://integration.hawksoft.app/vendor/agency/{agencyId}/offices
+    - GET  https://integration.hawksoft.app/vendor/agency/{agencyId}/clients
+    - POST https://integration.hawksoft.app/vendor/agency/{agencyId}/clients
+    - GET  https://integration.hawksoft.app/vendor/agency/{agencyId}/clients/search
+    - GET  https://integration.hawksoft.app/vendor/agency/{agencyId}/client/{clientId}
+    - POST https://integration.hawksoft.app/vendor/agency/{agencyId}/client/{clientId}/log
+    - POST https://integration.hawksoft.app/vendor/agency/{agencyId}/client/{clientId}/attachment
+    - POST https://integration.hawksoft.app/vendor/agency/{agencyId}/client/{clientId}/receipts
+  endpointsModeled: true
+  endpointsModeledNote: |
+    Endpoint paths, methods, and the base URL are from HawkSoft's public Partner
+    API documentation and are real. Request/response schemas in the OpenAPI are
+    modeled from the documentation because the API is gated and could not be
+    exercised without partner credentials and an opted-in agency.
+sources:
+  - url: https://partner.hawksoft.app/
+    type: Documentation
+    note: Partner API program overview; public docs, gated credentials.
+  - url: https://partner.hawksoft.app/v3/api.html
+    type: APIReference
+    note: V3.0 endpoints, base URL integration.hawksoft.app, Basic auth, version=3.0 param.
+  - url: https://partner.hawksoft.app/v1/api.html
+    type: APIReference
+    note: V1.8 endpoints; 200-client batch limit.
+  - url: https://blog.hawksoft.com/partner-api-3.0
+    type: Documentation
+    note: V3.0 data model (contacts, policies, coverages, vehicles, drivers, tasks) and 2-way write-back.
+  - url: https://www.hawksoft.com/terms/api/
+    type: TermsOfService
+    note: $3,000/year API fee (waivable), license terms, usage restrictions.
+  - url: https://www.hawksoft.com/about/partners/
+    type: Documentation
+    note: Partner program and how to request access (opportunities@hawksoft.com).
+actions:
+  asyncapiPath: null
+  apisYmlUpdated: true
+  reason: |
+    No WebSocket protocol surface exists. HawkSoft's Partner API is
+    request/response REST, kept in sync by polling a changed-since endpoint
+    rather than a realtime stream. No AsyncAPI document was created because there
+    is no server-push transport on HawkSoft's API to model.

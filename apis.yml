@@ -1,0 +1,136 @@
+aid: hawksoft
+url: https://raw.githubusercontent.com/api-evangelist/hawksoft/refs/heads/main/apis.yml
+name: HawkSoft
+kind: company
+description: HawkSoft is an insurance agency management system (AMS) for independent
+  property and casualty agencies, covering client management, policy tracking,
+  documentation, accounting, and workflow automation. HawkSoft operates a gated
+  Partner API program that lets vetted third-party technology vendors and agencies
+  read agency, office, client, contact, policy, coverage, vehicle, driver, and log
+  data, and (with 2-way integration) write activities back into HawkSoft as log
+  notes, attachments, and payment receipts. The Partner API documentation is
+  publicly readable at partner.hawksoft.app, but credentials are issued only to
+  approved API Partners, and an agency must opt in to share its data. Endpoints
+  are versioned (V1.8 and V3.0, with V3.0 built on the HawkSoft 6 cloud data
+  model).
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+tags:
+- Insurance
+- Agency Management System
+- AMS
+- InsurTech
+- Property and Casualty
+- Partner API
+- Gated API
+created: '2026-07-10'
+modified: '2026-07-10'
+specificationVersion: '0.19'
+apis:
+- aid: hawksoft:hawksoft-agencies-offices-api
+  name: HawkSoft Agencies and Offices API
+  tags:
+  - Agencies
+  - Offices
+  - Partner API
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://partner.hawksoft.app/v3/api.html
+  baseURL: https://integration.hawksoft.app
+  properties:
+  - url: https://partner.hawksoft.app/
+    type: Documentation
+  - url: https://partner.hawksoft.app/v3/api.html
+    type: APIReference
+  - url: openapi/hawksoft-openapi.yml
+    type: OpenAPI
+  description: List the agencies that have authorized a partner and enumerate each
+    agency's offices. This is the entry point for a partner integration - resolve
+    the agencyId and office details before requesting client or policy data.
+    Endpoint paths are from HawkSoft's public Partner API documentation; access
+    requires partner credentials issued by HawkSoft and agency opt-in.
+- aid: hawksoft:hawksoft-clients-api
+  name: HawkSoft Clients API
+  tags:
+  - Clients
+  - Contacts
+  - Policies
+  - Coverages
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://partner.hawksoft.app/v3/api.html
+  baseURL: https://integration.hawksoft.app
+  properties:
+  - url: https://partner.hawksoft.app/v3/api.html
+    type: APIReference
+  - url: https://blog.hawksoft.com/partner-api-3.0
+    type: Documentation
+  - url: openapi/hawksoft-openapi.yml
+    type: OpenAPI
+  description: Read client records for an agency. Fetch a single client by id, batch
+    up to a list of clients, list clients changed since a timestamp for incremental
+    sync, and search clients. In V3.0 a client payload consolidates contacts,
+    policies and coverages, vehicles, and drivers under HawkSoft 6's cloud data
+    model. Endpoint paths are from public Partner API docs; access is gated behind
+    partner credentials and agency opt-in.
+- aid: hawksoft:hawksoft-log-entries-api
+  name: HawkSoft Log Entries API
+  tags:
+  - Log Entries
+  - Notes
+  - Write-Back
+  - Activities
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://partner.hawksoft.app/v3/api.html
+  baseURL: https://integration.hawksoft.app
+  properties:
+  - url: https://partner.hawksoft.app/v3/api.html
+    type: APIReference
+  - url: https://blog.hawksoft.com/2-way-integration-marketing-automation
+    type: Documentation
+  - url: openapi/hawksoft-openapi.yml
+    type: OpenAPI
+  description: Write activities back into a HawkSoft client's log as log notes -
+    the core of HawkSoft's 2-way integration. Partners using write-back post
+    activity records (for example marketing touches or servicing events) so they
+    appear on the client timeline inside HawkSoft. Endpoint paths are from public
+    Partner API docs; write-back requires partner credentials and agency opt-in.
+- aid: hawksoft:hawksoft-attachments-receipts-api
+  name: HawkSoft Attachments and Receipts API
+  tags:
+  - Attachments
+  - Documents
+  - Receipts
+  - Payments
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: https://partner.hawksoft.app/v3/api.html
+  baseURL: https://integration.hawksoft.app
+  properties:
+  - url: https://partner.hawksoft.app/v3/api.html
+    type: APIReference
+  - url: openapi/hawksoft-openapi.yml
+    type: OpenAPI
+  description: Write documents and payment records to a client. Post file
+    attachments to a client record and post payment receipts (V3.0). Together with
+    log notes these make up HawkSoft's write-back surface. Endpoint paths are from
+    public Partner API docs; access is gated behind partner credentials and agency
+    opt-in.
+common:
+- type: Website
+  url: https://www.hawksoft.com
+- type: LinkedIn
+  url: https://www.linkedin.com/company/hawksoft-inc-
+- type: Documentation
+  url: https://partner.hawksoft.app/
+- type: SignUp
+  url: https://www.hawksoft.com/about/partners/
+- type: TermsOfService
+  url: https://www.hawksoft.com/terms/api/
+- type: Blog
+  url: https://blog.hawksoft.com/
+- type: Plans
+  url: plans/hawksoft-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/hawksoft-rate-limits.yml
+- type: FinOps
+  url: finops/hawksoft-finops.yml
+maintainers:
+- FN: Kin Lane
+  email: kin@apievangelist.com
