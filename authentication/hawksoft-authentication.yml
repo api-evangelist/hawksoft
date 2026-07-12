@@ -1,0 +1,13 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/hawksoft-openapi.yml
+summary:
+  types:
+  - http
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic authentication with partner-issued credentials.
+  sources:
+  - openapi/hawksoft-openapi.yml
