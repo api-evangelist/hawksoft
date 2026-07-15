@@ -113,6 +113,8 @@ apis:
     public Partner API docs; access is gated behind partner credentials and agency
     opt-in.
 common:
+- type: AgenticAccess
+  url: agentic-access/hawksoft-agentic-access.yml
 - type: DomainSecurity
   url: security/hawksoft-domain-security.yml
 - type: Authentication
