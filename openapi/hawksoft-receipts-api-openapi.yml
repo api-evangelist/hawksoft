@@ -1,0 +1,91 @@
+openapi: 3.0.3
+info:
+  title: HawkSoft Partner Agencies Receipts API
+  version: '3.0'
+  description: 'HawkSoft Partner API for insurance agency management. This OpenAPI document describes the documented Partner API surface (V3.0, with reference to V1.8).
+
+
+    IMPORTANT - endpoint modeling honesty: The paths, HTTP methods, and base URL below are taken from HawkSoft''s publicly readable Partner API documentation at https://partner.hawksoft.app. The Partner API is GATED - credentials are issued only to vetted, approved API Partners, and an agency must opt in to share its data, so the request/response schemas here are MODELED from the published documentation and blog descriptions rather than exercised against a live account. Field-level detail should be confirmed against the official docs and a partner sandbox before implementation.
+
+
+    Authentication is HTTP Basic (partner user and password). All V3.0 requests must include the query parameter version=3.0.'
+  contact:
+    name: HawkSoft Partner Program
+    email: opportunities@hawksoft.com
+    url: https://partner.hawksoft.app/
+  termsOfService: https://www.hawksoft.com/terms/api/
+servers:
+- url: https://integration.hawksoft.app
+  description: HawkSoft Partner API integration host
+security:
+- basicAuth: []
+tags:
+- name: Receipts
+  description: Payment receipts on client records
+paths:
+  /vendor/agency/{agencyId}/client/{clientId}/receipts:
+    post:
+      operationId: postReceipt
+      summary: Post a payment receipt to a client (write-back, V3.0)
+      tags:
+      - Receipts
+      parameters:
+      - $ref: '#/components/parameters/AgencyId'
+      - $ref: '#/components/parameters/ClientId'
+      - $ref: '#/components/parameters/Version'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Receipt'
+      responses:
+        '201':
+          description: Receipt created
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    Receipt:
+      type: object
+      properties:
+        amount:
+          type: number
+        method:
+          type: string
+        reference:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
+  parameters:
+    AgencyId:
+      name: agencyId
+      in: path
+      required: true
+      description: HawkSoft agency identifier.
+      schema:
+        type: string
+    ClientId:
+      name: clientId
+      in: path
+      required: true
+      description: HawkSoft client identifier.
+      schema:
+        type: string
+    Version:
+      name: version
+      in: query
+      required: true
+      description: API version; use 3.0 for the V3.0 surface.
+      schema:
+        type: string
+        default: '3.0'
+  responses:
+    Unauthorized:
+      description: Missing or invalid partner credentials.
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication with partner-issued credentials.

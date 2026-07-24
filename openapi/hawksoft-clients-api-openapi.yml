@@ -1,0 +1,235 @@
+openapi: 3.0.3
+info:
+  title: HawkSoft Partner Agencies Clients API
+  version: '3.0'
+  description: 'HawkSoft Partner API for insurance agency management. This OpenAPI document describes the documented Partner API surface (V3.0, with reference to V1.8).
+
+
+    IMPORTANT - endpoint modeling honesty: The paths, HTTP methods, and base URL below are taken from HawkSoft''s publicly readable Partner API documentation at https://partner.hawksoft.app. The Partner API is GATED - credentials are issued only to vetted, approved API Partners, and an agency must opt in to share its data, so the request/response schemas here are MODELED from the published documentation and blog descriptions rather than exercised against a live account. Field-level detail should be confirmed against the official docs and a partner sandbox before implementation.
+
+
+    Authentication is HTTP Basic (partner user and password). All V3.0 requests must include the query parameter version=3.0.'
+  contact:
+    name: HawkSoft Partner Program
+    email: opportunities@hawksoft.com
+    url: https://partner.hawksoft.app/
+  termsOfService: https://www.hawksoft.com/terms/api/
+servers:
+- url: https://integration.hawksoft.app
+  description: HawkSoft Partner API integration host
+security:
+- basicAuth: []
+tags:
+- name: Clients
+  description: Client records including contacts, policies, coverages, vehicles, and drivers
+paths:
+  /vendor/agency/{agencyId}/clients:
+    get:
+      operationId: listChangedClients
+      summary: List clients changed since a timestamp
+      description: Return client identifiers (and change metadata) for clients modified since the supplied timestamp, enabling incremental synchronization.
+      tags:
+      - Clients
+      parameters:
+      - $ref: '#/components/parameters/AgencyId'
+      - $ref: '#/components/parameters/Version'
+      - name: since
+        in: query
+        description: Return clients modified at or after this ISO 8601 timestamp.
+        required: false
+        schema:
+          type: string
+          format: date-time
+      responses:
+        '200':
+          description: Changed client references
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/ClientReference'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      operationId: getClientList
+      summary: Fetch a batch of clients by id
+      description: Return full client records for the supplied list of client ids. The documented batch limit is up to 200 client ids per request.
+      tags:
+      - Clients
+      parameters:
+      - $ref: '#/components/parameters/AgencyId'
+      - $ref: '#/components/parameters/Version'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: array
+              maxItems: 200
+              items:
+                type: string
+                description: Client id
+      responses:
+        '200':
+          description: Full client records
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Client'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /vendor/agency/{agencyId}/clients/search:
+    get:
+      operationId: searchClients
+      summary: Search clients
+      tags:
+      - Clients
+      parameters:
+      - $ref: '#/components/parameters/AgencyId'
+      - $ref: '#/components/parameters/Version'
+      - name: q
+        in: query
+        description: Search term (name, phone, email, or policy attributes).
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          description: Matching clients
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Client'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /vendor/agency/{agencyId}/client/{clientId}:
+    get:
+      operationId: getClient
+      summary: Get a single client
+      description: Return a full client record. In V3.0 the payload consolidates contacts, policies and coverages, vehicles, and drivers under the HawkSoft 6 cloud data model.
+      tags:
+      - Clients
+      parameters:
+      - $ref: '#/components/parameters/AgencyId'
+      - $ref: '#/components/parameters/ClientId'
+      - $ref: '#/components/parameters/Version'
+      responses:
+        '200':
+          description: A client record
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Client'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '404':
+          description: Client not found
+components:
+  parameters:
+    AgencyId:
+      name: agencyId
+      in: path
+      required: true
+      description: HawkSoft agency identifier.
+      schema:
+        type: string
+    ClientId:
+      name: clientId
+      in: path
+      required: true
+      description: HawkSoft client identifier.
+      schema:
+        type: string
+    Version:
+      name: version
+      in: query
+      required: true
+      description: API version; use 3.0 for the V3.0 surface.
+      schema:
+        type: string
+        default: '3.0'
+  responses:
+    Unauthorized:
+      description: Missing or invalid partner credentials.
+  schemas:
+    ClientReference:
+      type: object
+      properties:
+        clientId:
+          type: string
+        modified:
+          type: string
+          format: date-time
+    Contact:
+      type: object
+      properties:
+        contactId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+        phone:
+          type: string
+        priority:
+          type: integer
+    Client:
+      type: object
+      description: Consolidated V3.0 client record. Modeled from public documentation; confirm exact fields against the official Partner API docs.
+      properties:
+        clientId:
+          type: string
+        modified:
+          type: string
+          format: date-time
+        contacts:
+          type: array
+          items:
+            $ref: '#/components/schemas/Contact'
+        policies:
+          type: array
+          items:
+            $ref: '#/components/schemas/Policy'
+        vehicles:
+          type: array
+          items:
+            type: object
+        drivers:
+          type: array
+          items:
+            type: object
+    Policy:
+      type: object
+      properties:
+        policyId:
+          type: string
+        policyNumber:
+          type: string
+        lineOfBusiness:
+          type: string
+        carrier:
+          type: string
+        status:
+          type: string
+        effectiveDate:
+          type: string
+          format: date
+        expirationDate:
+          type: string
+          format: date
+        coverages:
+          type: array
+          items:
+            type: object
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic authentication with partner-issued credentials.
