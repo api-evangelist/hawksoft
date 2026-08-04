@@ -1,0 +1,22 @@
+{
+  "provider": "hawksoft",
+  "sources": [
+    "hawksoft-agencies-api-openapi.yml",
+    "hawksoft-attachments-api-openapi.yml",
+    "hawksoft-clients-api-openapi.yml",
+    "hawksoft-log-entries-api-openapi.yml",
+    "hawksoft-receipts-api-openapi.yml"
+  ],
+  "outputs": [
+    "hawksoft-agencies-api-openapi.yml",
+    "hawksoft-attachments-api-openapi.yml",
+    "hawksoft-clients-api-openapi.yml",
+    "hawksoft-log-entries-api-openapi.yml",
+    "hawksoft-receipts-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
