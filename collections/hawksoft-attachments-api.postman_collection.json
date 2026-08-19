@@ -1,0 +1,316 @@
+{
+  "item": [
+    {
+      "id": "ca51b34c-510b-43cb-ae06-6fa93bded89b",
+      "name": "Attachments",
+      "description": {
+        "content": "File attachments on client records",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "11257e06-7bf3-4605-ab84-1b339c5540da",
+          "name": "Post a file attachment to a client (write-back)",
+          "request": {
+            "name": "Post a file attachment to a client (write-back)",
+            "description": {},
+            "url": {
+              "path": [
+                "vendor",
+                "agency",
+                ":agencyId",
+                "client",
+                ":clientId",
+                "attachment"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "3.0",
+                  "description": "(Required) API version; use 3.0 for the V3.0 surface."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agencyId",
+                  "description": "(Required) HawkSoft agency identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientId",
+                  "description": "(Required) HawkSoft client identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "fileName",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "contentType",
+                  "value": "<string>",
+                  "type": "text",
+                  "description": ""
+                },
+                {
+                  "key": "file",
+                  "type": "file",
+                  "description": ""
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "465607eb-0676-4ba4-b586-0c3a14f74400",
+              "name": "Attachment created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendor",
+                    "agency",
+                    ":agencyId",
+                    "client",
+                    ":clientId",
+                    "attachment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "3.0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyId",
+                      "description": "(Required) HawkSoft agency identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) HawkSoft client identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "fileName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "contentType",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "42a7a48d-bc8a-405e-ae31-36660836764c",
+              "name": "Missing or invalid partner credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendor",
+                    "agency",
+                    ":agencyId",
+                    "client",
+                    ":clientId",
+                    "attachment"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "3.0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyId",
+                      "description": "(Required) HawkSoft agency identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) HawkSoft client identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "fileName",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "contentType",
+                      "value": "<string>",
+                      "type": "text"
+                    },
+                    {
+                      "description": {
+                        "content": "",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://integration.hawksoft.app",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a6a26aac-b49a-4798-9af8-00192e2fb1e7",
+    "name": "HawkSoft Partner Agencies Attachments API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "HawkSoft Partner API for insurance agency management. This OpenAPI document describes the documented Partner API surface (V3.0, with reference to V1.8).\n\nIMPORTANT - endpoint modeling honesty: The paths, HTTP methods, and base URL below are taken from HawkSoft's publicly readable Partner API documentation at https://partner.hawksoft.app. The Partner API is GATED - credentials are issued only to vetted, approved API Partners, and an agency must opt in to share its data, so the request/response schemas here are MODELED from the published documentation and blog descriptions rather than exercised against a live account. Field-level detail should be confirmed against the official docs and a partner sandbox before implementation.\n\nAuthentication is HTTP Basic (partner user and password). All V3.0 requests must include the query parameter version=3.0.\n\nContact Support:\n Name: HawkSoft Partner Program\n Email: opportunities@hawksoft.com",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,260 @@
+{
+  "item": [
+    {
+      "id": "429ef985-87b1-4dfe-b466-5ba445edaf94",
+      "name": "Log Entries",
+      "description": {
+        "content": "Write-back activity log notes",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d9edf03e-24d5-428d-92f5-ad4c6643d993",
+          "name": "Post a log note to a client (write-back)",
+          "request": {
+            "name": "Post a log note to a client (write-back)",
+            "description": {
+              "content": "Append an activity log note to a client's timeline. Core of HawkSoft's 2-way integration; available to partners using write-back.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vendor",
+                "agency",
+                ":agencyId",
+                "client",
+                ":clientId",
+                "log"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "3.0",
+                  "description": "(Required) API version; use 3.0 for the V3.0 surface."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agencyId",
+                  "description": "(Required) HawkSoft agency identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientId",
+                  "description": "(Required) HawkSoft client identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"<string>\",\n  \"action\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "abb2dcdc-e9ad-40c0-87e7-cf84ee5215fa",
+              "name": "Log note created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendor",
+                    "agency",
+                    ":agencyId",
+                    "client",
+                    ":clientId",
+                    "log"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "3.0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyId",
+                      "description": "(Required) HawkSoft agency identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) HawkSoft client identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"action\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d92b77a8-c772-45b1-93fe-738752aa58e3",
+              "name": "Missing or invalid partner credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendor",
+                    "agency",
+                    ":agencyId",
+                    "client",
+                    ":clientId",
+                    "log"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "3.0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyId",
+                      "description": "(Required) HawkSoft agency identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) HawkSoft client identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"description\": \"<string>\",\n  \"action\": \"<string>\",\n  \"timestamp\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://integration.hawksoft.app",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0a817821-23a7-48bb-a38e-0e496a0bbe88",
+    "name": "HawkSoft Partner Agencies Log Entries API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "HawkSoft Partner API for insurance agency management. This OpenAPI document describes the documented Partner API surface (V3.0, with reference to V1.8).\n\nIMPORTANT - endpoint modeling honesty: The paths, HTTP methods, and base URL below are taken from HawkSoft's publicly readable Partner API documentation at https://partner.hawksoft.app. The Partner API is GATED - credentials are issued only to vetted, approved API Partners, and an agency must opt in to share its data, so the request/response schemas here are MODELED from the published documentation and blog descriptions rather than exercised against a live account. Field-level detail should be confirmed against the official docs and a partner sandbox before implementation.\n\nAuthentication is HTTP Basic (partner user and password). All V3.0 requests must include the query parameter version=3.0.\n\nContact Support:\n Name: HawkSoft Partner Program\n Email: opportunities@hawksoft.com",
+      "type": "text/plain"
+    }
+  }
+}

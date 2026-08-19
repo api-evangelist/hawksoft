@@ -1,0 +1,69 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "HawkSoft Partner Agencies API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Agencies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List authorized agencies",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://integration.hawksoft.app/vendor/agencies",
+            "params": [
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "API version; use 3.0 for the V3.0 surface."
+              }
+            ]
+          },
+          "docs": "Return the agencies that have authorized this partner. Use the returned agencyId in all subsequent requests."
+        },
+        {
+          "info": {
+            "name": "List an agency's offices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://integration.hawksoft.app/vendor/agency/:agencyId/offices",
+            "params": [
+              {
+                "name": "agencyId",
+                "value": "",
+                "type": "path",
+                "description": "HawkSoft agency identifier."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "API version; use 3.0 for the V3.0 surface."
+              }
+            ]
+          },
+          "docs": "List an agency's offices"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

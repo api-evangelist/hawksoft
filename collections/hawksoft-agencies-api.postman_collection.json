@@ -1,0 +1,346 @@
+{
+  "item": [
+    {
+      "id": "fdde4a58-705b-4a3d-a9a5-469edb62ad1a",
+      "name": "Agencies",
+      "description": {
+        "content": "Agencies and their offices",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "cd2d6473-91be-473a-b832-0e14eb4ac600",
+          "name": "List authorized agencies",
+          "request": {
+            "name": "List authorized agencies",
+            "description": {
+              "content": "Return the agencies that have authorized this partner. Use the returned agencyId in all subsequent requests.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vendor",
+                "agencies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "3.0",
+                  "description": "(Required) API version; use 3.0 for the V3.0 surface."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c4025dc7-1a10-4c65-830d-89355f2c6203",
+              "name": "A list of agencies",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendor",
+                    "agencies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "3.0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"agencyId\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"string\"\n  },\n  {\n    \"agencyId\": \"string\",\n    \"name\": \"string\",\n    \"status\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aba29d99-ce23-46c1-ae3b-f8a08437e09c",
+              "name": "Missing or invalid partner credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendor",
+                    "agencies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "3.0"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a86a4bc5-5dcf-4e71-8ee5-517cc2edb657",
+          "name": "List an agency's offices",
+          "request": {
+            "name": "List an agency's offices",
+            "description": {},
+            "url": {
+              "path": [
+                "vendor",
+                "agency",
+                ":agencyId",
+                "offices"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "3.0",
+                  "description": "(Required) API version; use 3.0 for the V3.0 surface."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agencyId",
+                  "description": "(Required) HawkSoft agency identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f68db427-8d3f-4ac2-84a3-192b3f6efcbc",
+              "name": "A list of offices for the agency",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendor",
+                    "agency",
+                    ":agencyId",
+                    "offices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "3.0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyId",
+                      "description": "(Required) HawkSoft agency identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"officeId\": \"string\",\n    \"name\": \"string\",\n    \"address\": \"string\",\n    \"phone\": \"string\"\n  },\n  {\n    \"officeId\": \"string\",\n    \"name\": \"string\",\n    \"address\": \"string\",\n    \"phone\": \"string\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "057be989-2f5d-44f8-941c-a050572e286e",
+              "name": "Missing or invalid partner credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendor",
+                    "agency",
+                    ":agencyId",
+                    "offices"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "3.0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyId",
+                      "description": "(Required) HawkSoft agency identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://integration.hawksoft.app",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "dc362684-ab33-449e-9176-f94eaaef0e65",
+    "name": "HawkSoft Partner Agencies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "HawkSoft Partner API for insurance agency management. This OpenAPI document describes the documented Partner API surface (V3.0, with reference to V1.8).\n\nIMPORTANT - endpoint modeling honesty: The paths, HTTP methods, and base URL below are taken from HawkSoft's publicly readable Partner API documentation at https://partner.hawksoft.app. The Partner API is GATED - credentials are issued only to vetted, approved API Partners, and an agency must opt in to share its data, so the request/response schemas here are MODELED from the published documentation and blog descriptions rather than exercised against a live account. Field-level detail should be confirmed against the official docs and a partner sandbox before implementation.\n\nAuthentication is HTTP Basic (partner user and password). All V3.0 requests must include the query parameter version=3.0.\n\nContact Support:\n Name: HawkSoft Partner Program\n Email: opportunities@hawksoft.com",
+      "type": "text/plain"
+    }
+  }
+}

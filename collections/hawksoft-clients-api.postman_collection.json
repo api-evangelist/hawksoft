@@ -1,0 +1,857 @@
+{
+  "item": [
+    {
+      "id": "57351b2a-af9d-4e0a-a8b5-a502905a6723",
+      "name": "Clients",
+      "description": {
+        "content": "Client records including contacts, policies, coverages, vehicles, and drivers",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2b72349d-4321-4994-8974-e447b1070149",
+          "name": "List clients changed since a timestamp",
+          "request": {
+            "name": "List clients changed since a timestamp",
+            "description": {
+              "content": "Return client identifiers (and change metadata) for clients modified since the supplied timestamp, enabling incremental synchronization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vendor",
+                "agency",
+                ":agencyId",
+                "clients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "3.0",
+                  "description": "(Required) API version; use 3.0 for the V3.0 surface."
+                },
+                {
+                  "disabled": false,
+                  "key": "since",
+                  "value": "<dateTime>",
+                  "description": "Return clients modified at or after this ISO 8601 timestamp."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agencyId",
+                  "description": "(Required) HawkSoft agency identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "9de9e7d2-25c1-4714-9337-29b2289120da",
+              "name": "Changed client references",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendor",
+                    "agency",
+                    ":agencyId",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "3.0"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyId",
+                      "description": "(Required) HawkSoft agency identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"clientId\": \"string\",\n    \"modified\": \"1957-08-30T05:45:31.153Z\"\n  },\n  {\n    \"clientId\": \"string\",\n    \"modified\": \"1976-10-11T14:30:40.556Z\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f48b0bb3-a3fc-490c-8ecc-1991b145511a",
+              "name": "Missing or invalid partner credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendor",
+                    "agency",
+                    ":agencyId",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "3.0"
+                    },
+                    {
+                      "key": "since",
+                      "value": "<dateTime>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyId",
+                      "description": "(Required) HawkSoft agency identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "18657d02-efea-4eb8-9403-6e4988973141",
+          "name": "Fetch a batch of clients by id",
+          "request": {
+            "name": "Fetch a batch of clients by id",
+            "description": {
+              "content": "Return full client records for the supplied list of client ids. The documented batch limit is up to 200 client ids per request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vendor",
+                "agency",
+                ":agencyId",
+                "clients"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "3.0",
+                  "description": "(Required) API version; use 3.0 for the V3.0 surface."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agencyId",
+                  "description": "(Required) HawkSoft agency identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "2b67206c-8c87-4fff-903f-289efe802a65",
+              "name": "Full client records",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendor",
+                    "agency",
+                    ":agencyId",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "3.0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyId",
+                      "description": "(Required) HawkSoft agency identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"clientId\": \"string\",\n    \"modified\": \"2010-08-20T05:33:57.632Z\",\n    \"contacts\": [\n      {\n        \"contactId\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"email\": \"string\",\n        \"phone\": \"string\",\n        \"priority\": 8567\n      },\n      {\n        \"contactId\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"email\": \"string\",\n        \"phone\": \"string\",\n        \"priority\": 7989\n      }\n    ],\n    \"policies\": [\n      {\n        \"policyId\": \"string\",\n        \"policyNumber\": \"string\",\n        \"lineOfBusiness\": \"string\",\n        \"carrier\": \"string\",\n        \"status\": \"string\",\n        \"effectiveDate\": \"1954-11-19\",\n        \"expirationDate\": \"2007-10-31\"\n      },\n      {\n        \"policyId\": \"string\",\n        \"policyNumber\": \"string\",\n        \"lineOfBusiness\": \"string\",\n        \"carrier\": \"string\",\n        \"status\": \"string\",\n        \"effectiveDate\": \"1970-02-24\",\n        \"expirationDate\": \"2006-11-22\"\n      }\n    ]\n  },\n  {\n    \"clientId\": \"string\",\n    \"modified\": \"1955-05-24T19:46:24.012Z\",\n    \"contacts\": [\n      {\n        \"contactId\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"email\": \"string\",\n        \"phone\": \"string\",\n        \"priority\": 954\n      },\n      {\n        \"contactId\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"email\": \"string\",\n        \"phone\": \"string\",\n        \"priority\": 9629\n      }\n    ],\n    \"policies\": [\n      {\n        \"policyId\": \"string\",\n        \"policyNumber\": \"string\",\n        \"lineOfBusiness\": \"string\",\n        \"carrier\": \"string\",\n        \"status\": \"string\",\n        \"effectiveDate\": \"1962-03-18\",\n        \"expirationDate\": \"2016-07-02\"\n      },\n      {\n        \"policyId\": \"string\",\n        \"policyNumber\": \"string\",\n        \"lineOfBusiness\": \"string\",\n        \"carrier\": \"string\",\n        \"status\": \"string\",\n        \"effectiveDate\": \"1983-07-16\",\n        \"expirationDate\": \"1956-01-22\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f073d58f-6e53-4ffe-8887-349bde018258",
+              "name": "Missing or invalid partner credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendor",
+                    "agency",
+                    ":agencyId",
+                    "clients"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "3.0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyId",
+                      "description": "(Required) HawkSoft agency identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  \"<string>\",\n  \"<string>\"\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "12321b37-5258-43d8-81f1-ab9220642b76",
+          "name": "Search clients",
+          "request": {
+            "name": "Search clients",
+            "description": {},
+            "url": {
+              "path": [
+                "vendor",
+                "agency",
+                ":agencyId",
+                "clients",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "3.0",
+                  "description": "(Required) API version; use 3.0 for the V3.0 surface."
+                },
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Search term (name, phone, email, or policy attributes)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agencyId",
+                  "description": "(Required) HawkSoft agency identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a561e8c0-cc89-4763-bc16-a7da7074cf8f",
+              "name": "Matching clients",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendor",
+                    "agency",
+                    ":agencyId",
+                    "clients",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "3.0"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyId",
+                      "description": "(Required) HawkSoft agency identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"clientId\": \"string\",\n    \"modified\": \"1965-07-13T05:03:35.559Z\",\n    \"contacts\": [\n      {\n        \"contactId\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"email\": \"string\",\n        \"phone\": \"string\",\n        \"priority\": 3167\n      },\n      {\n        \"contactId\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"email\": \"string\",\n        \"phone\": \"string\",\n        \"priority\": 4829\n      }\n    ],\n    \"policies\": [\n      {\n        \"policyId\": \"string\",\n        \"policyNumber\": \"string\",\n        \"lineOfBusiness\": \"string\",\n        \"carrier\": \"string\",\n        \"status\": \"string\",\n        \"effectiveDate\": \"2001-06-29\",\n        \"expirationDate\": \"1973-07-06\"\n      },\n      {\n        \"policyId\": \"string\",\n        \"policyNumber\": \"string\",\n        \"lineOfBusiness\": \"string\",\n        \"carrier\": \"string\",\n        \"status\": \"string\",\n        \"effectiveDate\": \"1968-12-20\",\n        \"expirationDate\": \"2024-09-11\"\n      }\n    ]\n  },\n  {\n    \"clientId\": \"string\",\n    \"modified\": \"1989-11-01T06:22:23.728Z\",\n    \"contacts\": [\n      {\n        \"contactId\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"email\": \"string\",\n        \"phone\": \"string\",\n        \"priority\": 4058\n      },\n      {\n        \"contactId\": \"string\",\n        \"firstName\": \"string\",\n        \"lastName\": \"string\",\n        \"email\": \"string\",\n        \"phone\": \"string\",\n        \"priority\": 5537\n      }\n    ],\n    \"policies\": [\n      {\n        \"policyId\": \"string\",\n        \"policyNumber\": \"string\",\n        \"lineOfBusiness\": \"string\",\n        \"carrier\": \"string\",\n        \"status\": \"string\",\n        \"effectiveDate\": \"1987-02-16\",\n        \"expirationDate\": \"1961-07-20\"\n      },\n      {\n        \"policyId\": \"string\",\n        \"policyNumber\": \"string\",\n        \"lineOfBusiness\": \"string\",\n        \"carrier\": \"string\",\n        \"status\": \"string\",\n        \"effectiveDate\": \"1953-07-11\",\n        \"expirationDate\": \"2008-07-24\"\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bbd7d0e8-eaf5-442d-9708-177b309847ad",
+              "name": "Missing or invalid partner credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendor",
+                    "agency",
+                    ":agencyId",
+                    "clients",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "3.0"
+                    },
+                    {
+                      "key": "q",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyId",
+                      "description": "(Required) HawkSoft agency identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "df87c8e0-0ec7-456f-9aac-66eccb483d66",
+          "name": "Get a single client",
+          "request": {
+            "name": "Get a single client",
+            "description": {
+              "content": "Return a full client record. In V3.0 the payload consolidates contacts, policies and coverages, vehicles, and drivers under the HawkSoft 6 cloud data model.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "vendor",
+                "agency",
+                ":agencyId",
+                "client",
+                ":clientId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "version",
+                  "value": "3.0",
+                  "description": "(Required) API version; use 3.0 for the V3.0 surface."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "agencyId",
+                  "description": "(Required) HawkSoft agency identifier."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "clientId",
+                  "description": "(Required) HawkSoft client identifier."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f9b73cd4-f854-43de-8b42-b03ab19f5e0e",
+              "name": "A client record",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendor",
+                    "agency",
+                    ":agencyId",
+                    "client",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "3.0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyId",
+                      "description": "(Required) HawkSoft agency identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) HawkSoft client identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"clientId\": \"string\",\n  \"modified\": \"2008-11-13T07:28:13.923Z\",\n  \"contacts\": [\n    {\n      \"contactId\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"priority\": 3236\n    },\n    {\n      \"contactId\": \"string\",\n      \"firstName\": \"string\",\n      \"lastName\": \"string\",\n      \"email\": \"string\",\n      \"phone\": \"string\",\n      \"priority\": 8705\n    }\n  ],\n  \"policies\": [\n    {\n      \"policyId\": \"string\",\n      \"policyNumber\": \"string\",\n      \"lineOfBusiness\": \"string\",\n      \"carrier\": \"string\",\n      \"status\": \"string\",\n      \"effectiveDate\": \"2014-04-10\",\n      \"expirationDate\": \"1946-11-16\"\n    },\n    {\n      \"policyId\": \"string\",\n      \"policyNumber\": \"string\",\n      \"lineOfBusiness\": \"string\",\n      \"carrier\": \"string\",\n      \"status\": \"string\",\n      \"effectiveDate\": \"1983-05-01\",\n      \"expirationDate\": \"2021-04-14\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f47323fa-0058-44ce-b267-55d987768d5f",
+              "name": "Missing or invalid partner credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendor",
+                    "agency",
+                    ":agencyId",
+                    "client",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "3.0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyId",
+                      "description": "(Required) HawkSoft agency identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) HawkSoft client identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "931cbac7-33d4-430c-a942-e9824e77a4f1",
+              "name": "Client not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "vendor",
+                    "agency",
+                    ":agencyId",
+                    "client",
+                    ":clientId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "version",
+                      "value": "3.0"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "agencyId",
+                      "description": "(Required) HawkSoft agency identifier."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "clientId",
+                      "description": "(Required) HawkSoft client identifier."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://integration.hawksoft.app",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "802534d1-87eb-4d02-af59-2fcb591686c1",
+    "name": "HawkSoft Partner Agencies Clients API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "HawkSoft Partner API for insurance agency management. This OpenAPI document describes the documented Partner API surface (V3.0, with reference to V1.8).\n\nIMPORTANT - endpoint modeling honesty: The paths, HTTP methods, and base URL below are taken from HawkSoft's publicly readable Partner API documentation at https://partner.hawksoft.app. The Partner API is GATED - credentials are issued only to vetted, approved API Partners, and an agency must opt in to share its data, so the request/response schemas here are MODELED from the published documentation and blog descriptions rather than exercised against a live account. Field-level detail should be confirmed against the official docs and a partner sandbox before implementation.\n\nAuthentication is HTTP Basic (partner user and password). All V3.0 requests must include the query parameter version=3.0.\n\nContact Support:\n Name: HawkSoft Partner Program\n Email: opportunities@hawksoft.com",
+      "type": "text/plain"
+    }
+  }
+}

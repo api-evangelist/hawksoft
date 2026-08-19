@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "HawkSoft Partner Agencies Attachments API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Attachments",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Post a file attachment to a client (write-back)",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://integration.hawksoft.app/vendor/agency/:agencyId/client/:clientId/attachment",
+            "params": [
+              {
+                "name": "agencyId",
+                "value": "",
+                "type": "path",
+                "description": "HawkSoft agency identifier."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "HawkSoft client identifier."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "API version; use 3.0 for the V3.0 surface."
+              }
+            ],
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Post a file attachment to a client (write-back)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

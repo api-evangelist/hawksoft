@@ -1,0 +1,147 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "HawkSoft Partner Agencies Clients API",
+    "version": "3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Clients",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List clients changed since a timestamp",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://integration.hawksoft.app/vendor/agency/:agencyId/clients",
+            "params": [
+              {
+                "name": "agencyId",
+                "value": "",
+                "type": "path",
+                "description": "HawkSoft agency identifier."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "API version; use 3.0 for the V3.0 surface."
+              },
+              {
+                "name": "since",
+                "value": "",
+                "type": "query",
+                "description": "Return clients modified at or after this ISO 8601 timestamp."
+              }
+            ]
+          },
+          "docs": "Return client identifiers (and change metadata) for clients modified since the supplied timestamp, enabling incremental synchronization."
+        },
+        {
+          "info": {
+            "name": "Fetch a batch of clients by id",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://integration.hawksoft.app/vendor/agency/:agencyId/clients",
+            "params": [
+              {
+                "name": "agencyId",
+                "value": "",
+                "type": "path",
+                "description": "HawkSoft agency identifier."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "API version; use 3.0 for the V3.0 surface."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Return full client records for the supplied list of client ids. The documented batch limit is up to 200 client ids per request."
+        },
+        {
+          "info": {
+            "name": "Search clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://integration.hawksoft.app/vendor/agency/:agencyId/clients/search",
+            "params": [
+              {
+                "name": "agencyId",
+                "value": "",
+                "type": "path",
+                "description": "HawkSoft agency identifier."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "API version; use 3.0 for the V3.0 surface."
+              },
+              {
+                "name": "q",
+                "value": "",
+                "type": "query",
+                "description": "Search term (name, phone, email, or policy attributes)."
+              }
+            ]
+          },
+          "docs": "Search clients"
+        },
+        {
+          "info": {
+            "name": "Get a single client",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://integration.hawksoft.app/vendor/agency/:agencyId/client/:clientId",
+            "params": [
+              {
+                "name": "agencyId",
+                "value": "",
+                "type": "path",
+                "description": "HawkSoft agency identifier."
+              },
+              {
+                "name": "clientId",
+                "value": "",
+                "type": "path",
+                "description": "HawkSoft client identifier."
+              },
+              {
+                "name": "version",
+                "value": "",
+                "type": "query",
+                "description": "API version; use 3.0 for the V3.0 surface."
+              }
+            ]
+          },
+          "docs": "Return a full client record. In V3.0 the payload consolidates contacts, policies and coverages, vehicles, and drivers under the HawkSoft 6 cloud data model."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
