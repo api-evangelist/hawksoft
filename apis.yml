@@ -13,6 +13,18 @@ description: HawkSoft is an insurance agency management system (AMS) for indepen
   approved API Partners, and an agency must opt in to share its data. Endpoints
   are versioned (V1.8 and V3.0, with V3.0 built on the HawkSoft 6 cloud data
   model).
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
