@@ -1,11 +1,7 @@
 {
   "provider": "hawksoft",
   "sources": [
-    "hawksoft-agencies-api-openapi.yml",
-    "hawksoft-attachments-api-openapi.yml",
-    "hawksoft-clients-api-openapi.yml",
-    "hawksoft-log-entries-api-openapi.yml",
-    "hawksoft-receipts-api-openapi.yml"
+    "_original/hawksoft-openapi.yml"
   ],
   "outputs": [
     "hawksoft-agencies-api-openapi.yml",
@@ -17,6 +13,16 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "hawksoft-openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "hawksoft-agencies-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hawksoft-attachments-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hawksoft-clients-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hawksoft-log-entries-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "hawksoft-receipts-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
