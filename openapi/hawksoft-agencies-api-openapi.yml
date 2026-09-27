@@ -58,6 +58,27 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  schemas:
+    Agency:
+      type: object
+      properties:
+        agencyId:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
+    Office:
+      type: object
+      properties:
+        officeId:
+          type: string
+        name:
+          type: string
+        address:
+          type: string
+        phone:
+          type: string
   parameters:
     AgencyId:
       name: agencyId
@@ -77,27 +98,6 @@ components:
   responses:
     Unauthorized:
       description: Missing or invalid partner credentials.
-  schemas:
-    Office:
-      type: object
-      properties:
-        officeId:
-          type: string
-        name:
-          type: string
-        address:
-          type: string
-        phone:
-          type: string
-    Agency:
-      type: object
-      properties:
-        agencyId:
-          type: string
-        name:
-          type: string
-        status:
-          type: string
   securitySchemes:
     basicAuth:
       type: http

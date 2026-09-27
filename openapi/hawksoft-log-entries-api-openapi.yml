@@ -48,6 +48,13 @@ components:
       description: HawkSoft agency identifier.
       schema:
         type: string
+    ClientId:
+      name: clientId
+      in: path
+      required: true
+      description: HawkSoft client identifier.
+      schema:
+        type: string
     Version:
       name: version
       in: query
@@ -56,13 +63,6 @@ components:
       schema:
         type: string
         default: '3.0'
-    ClientId:
-      name: clientId
-      in: path
-      required: true
-      description: HawkSoft client identifier.
-      schema:
-        type: string
   schemas:
     LogNote:
       type: object
