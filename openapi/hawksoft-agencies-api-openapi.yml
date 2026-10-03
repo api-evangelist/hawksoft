@@ -80,13 +80,6 @@ components:
         phone:
           type: string
   parameters:
-    AgencyId:
-      name: agencyId
-      in: path
-      required: true
-      description: HawkSoft agency identifier.
-      schema:
-        type: string
     Version:
       name: version
       in: query
@@ -95,6 +88,13 @@ components:
       schema:
         type: string
         default: '3.0'
+    AgencyId:
+      name: agencyId
+      in: path
+      required: true
+      description: HawkSoft agency identifier.
+      schema:
+        type: string
   responses:
     Unauthorized:
       description: Missing or invalid partner credentials.

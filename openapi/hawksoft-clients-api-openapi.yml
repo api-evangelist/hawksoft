@@ -125,29 +125,29 @@ paths:
           description: Client not found
 components:
   schemas:
-    Contact:
+    Policy:
       type: object
       properties:
-        contactId:
+        policyId:
           type: string
-        firstName:
+        policyNumber:
           type: string
-        lastName:
+        lineOfBusiness:
           type: string
-        email:
+        carrier:
           type: string
-        phone:
+        status:
           type: string
-        priority:
-          type: integer
-    ClientReference:
-      type: object
-      properties:
-        clientId:
+        effectiveDate:
           type: string
-        modified:
+          format: date
+        expirationDate:
           type: string
-          format: date-time
+          format: date
+        coverages:
+          type: array
+          items:
+            type: object
     Client:
       type: object
       description: Consolidated V3.0 client record. Modeled from public documentation; confirm exact fields against the official Partner API docs.
@@ -173,44 +173,30 @@ components:
           type: array
           items:
             type: object
-    Policy:
+    Contact:
       type: object
       properties:
-        policyId:
+        contactId:
           type: string
-        policyNumber:
+        firstName:
           type: string
-        lineOfBusiness:
+        lastName:
           type: string
-        carrier:
+        email:
           type: string
-        status:
+        phone:
           type: string
-        effectiveDate:
+        priority:
+          type: integer
+    ClientReference:
+      type: object
+      properties:
+        clientId:
           type: string
-          format: date
-        expirationDate:
+        modified:
           type: string
-          format: date
-        coverages:
-          type: array
-          items:
-            type: object
+          format: date-time
   parameters:
-    ClientId:
-      name: clientId
-      in: path
-      required: true
-      description: HawkSoft client identifier.
-      schema:
-        type: string
-    AgencyId:
-      name: agencyId
-      in: path
-      required: true
-      description: HawkSoft agency identifier.
-      schema:
-        type: string
     Version:
       name: version
       in: query
@@ -219,6 +205,20 @@ components:
       schema:
         type: string
         default: '3.0'
+    AgencyId:
+      name: agencyId
+      in: path
+      required: true
+      description: HawkSoft agency identifier.
+      schema:
+        type: string
+    ClientId:
+      name: clientId
+      in: path
+      required: true
+      description: HawkSoft client identifier.
+      schema:
+        type: string
   responses:
     Unauthorized:
       description: Missing or invalid partner credentials.

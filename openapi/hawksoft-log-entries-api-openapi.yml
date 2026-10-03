@@ -40,7 +40,28 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  schemas:
+    LogNote:
+      type: object
+      required:
+      - description
+      properties:
+        action:
+          type: string
+        description:
+          type: string
+        timestamp:
+          type: string
+          format: date-time
   parameters:
+    Version:
+      name: version
+      in: query
+      required: true
+      description: API version; use 3.0 for the V3.0 surface.
+      schema:
+        type: string
+        default: '3.0'
     AgencyId:
       name: agencyId
       in: path
@@ -55,27 +76,6 @@ components:
       description: HawkSoft client identifier.
       schema:
         type: string
-    Version:
-      name: version
-      in: query
-      required: true
-      description: API version; use 3.0 for the V3.0 surface.
-      schema:
-        type: string
-        default: '3.0'
-  schemas:
-    LogNote:
-      type: object
-      required:
-      - description
-      properties:
-        action:
-          type: string
-        description:
-          type: string
-        timestamp:
-          type: string
-          format: date-time
   responses:
     Unauthorized:
       description: Missing or invalid partner credentials.

@@ -40,6 +40,14 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   parameters:
+    Version:
+      name: version
+      in: query
+      required: true
+      description: API version; use 3.0 for the V3.0 surface.
+      schema:
+        type: string
+        default: '3.0'
     AgencyId:
       name: agencyId
       in: path
@@ -54,14 +62,6 @@ components:
       description: HawkSoft client identifier.
       schema:
         type: string
-    Version:
-      name: version
-      in: query
-      required: true
-      description: API version; use 3.0 for the V3.0 surface.
-      schema:
-        type: string
-        default: '3.0'
   schemas:
     Attachment:
       type: object
