@@ -148,6 +148,14 @@ components:
           type: array
           items:
             type: object
+    ClientReference:
+      type: object
+      properties:
+        clientId:
+          type: string
+        modified:
+          type: string
+          format: date-time
     Client:
       type: object
       description: Consolidated V3.0 client record. Modeled from public documentation; confirm exact fields against the official Partner API docs.
@@ -188,15 +196,14 @@ components:
           type: string
         priority:
           type: integer
-    ClientReference:
-      type: object
-      properties:
-        clientId:
-          type: string
-        modified:
-          type: string
-          format: date-time
   parameters:
+    ClientId:
+      name: clientId
+      in: path
+      required: true
+      description: HawkSoft client identifier.
+      schema:
+        type: string
     Version:
       name: version
       in: query
@@ -210,13 +217,6 @@ components:
       in: path
       required: true
       description: HawkSoft agency identifier.
-      schema:
-        type: string
-    ClientId:
-      name: clientId
-      in: path
-      required: true
-      description: HawkSoft client identifier.
       schema:
         type: string
   responses:

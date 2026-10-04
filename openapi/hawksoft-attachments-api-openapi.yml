@@ -40,6 +40,20 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   parameters:
+    ClientId:
+      name: clientId
+      in: path
+      required: true
+      description: HawkSoft client identifier.
+      schema:
+        type: string
+    AgencyId:
+      name: agencyId
+      in: path
+      required: true
+      description: HawkSoft agency identifier.
+      schema:
+        type: string
     Version:
       name: version
       in: query
@@ -48,20 +62,6 @@ components:
       schema:
         type: string
         default: '3.0'
-    AgencyId:
-      name: agencyId
-      in: path
-      required: true
-      description: HawkSoft agency identifier.
-      schema:
-        type: string
-    ClientId:
-      name: clientId
-      in: path
-      required: true
-      description: HawkSoft client identifier.
-      schema:
-        type: string
   schemas:
     Attachment:
       type: object

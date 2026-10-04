@@ -59,15 +59,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    Agency:
-      type: object
-      properties:
-        agencyId:
-          type: string
-        name:
-          type: string
-        status:
-          type: string
     Office:
       type: object
       properties:
@@ -79,7 +70,23 @@ components:
           type: string
         phone:
           type: string
+    Agency:
+      type: object
+      properties:
+        agencyId:
+          type: string
+        name:
+          type: string
+        status:
+          type: string
   parameters:
+    AgencyId:
+      name: agencyId
+      in: path
+      required: true
+      description: HawkSoft agency identifier.
+      schema:
+        type: string
     Version:
       name: version
       in: query
@@ -88,13 +95,6 @@ components:
       schema:
         type: string
         default: '3.0'
-    AgencyId:
-      name: agencyId
-      in: path
-      required: true
-      description: HawkSoft agency identifier.
-      schema:
-        type: string
   responses:
     Unauthorized:
       description: Missing or invalid partner credentials.
