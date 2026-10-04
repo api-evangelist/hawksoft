@@ -40,6 +40,9 @@ accessModel:
   generated: '2026-09-03'
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/hawksoft.png
+x-docs-platform: vitepress
+x-docs-platform-confidence: medium
+x-docs-platform-checked: 2026-10-03
 tags:
 - Insurance
 - Agency Management System
@@ -151,6 +154,9 @@ apis:
   - type: Documentation
     url: https://blog.hawksoft.com/2-way-integration-marketing-automation
 common:
+- type: CapabilityMap
+  url: capabilities/hawksoft-capability-edges.yml
+  name: HawkSoft Business Capability Map
 - type: AgenticAccess
   url: agentic-access/hawksoft-agentic-access.yml
 - type: DomainSecurity
