@@ -91,3 +91,29 @@ plans:
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - seat
+  - subscription
+  units:
+  - negotiated
+  - seat
+  plans:
+  - name: HawkSoft AMS Subscription (Agency)
+    access: paid
+    model: seat
+    model_how: derived
+    units:
+    - seat
+    periods:
+    - month
+  - name: Partner API Program (Vendor)
+    access: paid
+    model: subscription
+    model_how: derived
+    units:
+    - negotiated
+    periods:
+    - year
