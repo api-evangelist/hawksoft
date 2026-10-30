@@ -1,4 +1,4 @@
-# HawkSoft (hawksoft)
+# HawkSoft
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -64,98 +64,126 @@
 > Full detail: **[Where this data comes from](https://apievangelist.com/about/where-our-data-comes-from)**
 <!-- API-EVANGELIST-PROVENANCE:END -->
 
-HawkSoft is an insurance agency management system (AMS) for independent property and casualty agencies, covering client management, policy tracking, documentation, accounting, and workflow automation. HawkSoft operates a **gated Partner API** program that lets vetted third-party technology vendors and agencies read agency, office, client, contact, policy, coverage, vehicle, driver, and log data, and (with 2-way integration) write activities back into HawkSoft as log notes, attachments, and payment receipts.
+HawkSoft is an insurance agency management system (AMS) for independent property and casualty agencies, covering client management, policy tracking, documentation, accounting, and workflow automation. HawkSoft operates a gated Partner API program that lets vetted third-party technology vendors and agencies read agency, office, client, contact, policy, coverage, vehicle, driver, and log data, and (with 2-way integration) write activities back into HawkSoft as log notes, attachments, and payment receipts. The Partner API documentation is publicly readable at partner.hawksoft.app, but credentials are issued only to approved API Partners, and an agency must opt in to share its data. Endpoints are versioned (V1.8 and V3.0, with V3.0 built on the HawkSoft 6 cloud data model).
 
-**APIs.json:** [https://raw.githubusercontent.com/api-evangelist/hawksoft/refs/heads/main/apis.yml](https://raw.githubusercontent.com/api-evangelist/hawksoft/refs/heads/main/apis.yml)
+**Areas:** Insurance · Agency Management System · AMS · Insurtech · Property and Casualty · Partner API · Gated API
 
-## Access Model — Read This First
+## HawkSoft on APIs.io
 
-The HawkSoft Partner API is **gated**, though its documentation is **public**:
+Everything profiled for HawkSoft is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/hawksoft/](https://apis.io/providers/hawksoft/)** — or go straight to one of the APIs or properties below.
 
-- **Documentation is publicly readable** (no NDA) at [partner.hawksoft.app](https://partner.hawksoft.app/) for both V1.8 and V3.0.
-- **Credentials are private.** HawkSoft issues API credentials only to vetted, approved API Partners. Prospective partners contact `opportunities@hawksoft.com`.
-- **Agencies must opt in.** A partner can only access an agency's data after that agency, an active HawkSoft subscriber, opts in to share it. Access is revocable.
-- **Base URL:** `https://integration.hawksoft.app`
-- **Auth:** HTTP Basic (partner user + password). V3.0 requests require a `version=3.0` query parameter.
-- **Partner fee:** HawkSoft's API Terms state a **$3,000/year API fee**, payable in advance, which may be waived with prior written consent.
+### APIs (5)
 
-Because the API is gated, the endpoint **paths, methods, and base URL** in `openapi/hawksoft-openapi.yml` are taken directly from HawkSoft's public documentation and are real, but the **request/response schemas are modeled** from the documentation rather than exercised against a live account. This is flagged in `review.yml` (`endpointsModeled: true`).
+- [HawkSoft Agencies API](https://apis.io/apis/hawksoft/hawksoft-agencies-api/) — Agencies and their offices
+- [HawkSoft Attachments API](https://apis.io/apis/hawksoft/hawksoft-attachments-api/) — File attachments on client records
+- [HawkSoft Clients API](https://apis.io/apis/hawksoft/hawksoft-clients-api/) — Client records including contacts, policies, coverages, vehicles, and drivers
+- [HawkSoft Log Entries API](https://apis.io/apis/hawksoft/hawksoft-log-entries-api/) — Write-back activity log notes
+- [HawkSoft Receipts API](https://apis.io/apis/hawksoft/hawksoft-receipts-api/) — Payment receipts on client records
 
-## APIs
+### Published properties
 
-The Partner API surface is grouped here into four logical APIs. All share the `https://integration.hawksoft.app` base URL and the `/vendor/...` path prefix.
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### HawkSoft Agencies and Offices API
+#### Agentic access (1)
 
-List the agencies that have authorized a partner and enumerate each agency's offices — the entry point that resolves the `agencyId` before requesting client data.
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- `GET /vendor/agencies`
-- `GET /vendor/agency/{agencyId}/offices`
+- [Hawksoft Agentic Access](https://apis.io/agentic-access/hawksoft/hawksoft-agentic-access/)
 
-### HawkSoft Clients API
+#### Collections (5)
 
-Read client records. In V3.0 a client payload consolidates contacts, policies and coverages, vehicles, and drivers under the HawkSoft 6 cloud data model.
+Postman and Open Collection request collections.
 
-- `GET /vendor/agency/{agencyId}/clients` — clients changed since a timestamp (incremental sync)
-- `POST /vendor/agency/{agencyId}/clients` — batch fetch by id (up to 200 client ids)
-- `GET /vendor/agency/{agencyId}/clients/search` — search clients
-- `GET /vendor/agency/{agencyId}/client/{clientId}` — single client
+- [HawkSoft Partner Agencies API](https://apis.io/collections/hawksoft/open-hawksoft-agencies-api/)
+- [HawkSoft Partner Agencies Attachments API](https://apis.io/collections/hawksoft/open-hawksoft-attachments-api/)
+- [HawkSoft Partner Agencies Clients API](https://apis.io/collections/hawksoft/open-hawksoft-clients-api/)
+- [HawkSoft Partner Agencies Log Entries API](https://apis.io/collections/hawksoft/open-hawksoft-log-entries-api/)
+- [HawkSoft Partner Agencies Receipts API](https://apis.io/collections/hawksoft/open-hawksoft-receipts-api/)
 
-### HawkSoft Log Entries API
+#### Security (2)
 
-Write activities back into a client's log — the core of HawkSoft's 2-way integration.
+Authentication, trust centre, and vulnerability disclosure.
 
-- `POST /vendor/agency/{agencyId}/client/{clientId}/log`
+- [Hawksoft Authentication](https://apis.io/security/hawksoft/hawksoft-authentication/)
+- [Hawksoft Domain Security](https://apis.io/security/hawksoft/hawksoft-domain-security/)
 
-### HawkSoft Attachments and Receipts API
+#### Plans and pricing (1)
 
-Write documents and payment records to a client.
+Published plans, tiers and prices.
 
-- `POST /vendor/agency/{agencyId}/client/{clientId}/attachment`
-- `POST /vendor/agency/{agencyId}/client/{clientId}/receipts` (V3.0)
+- [Hawksoft Plans Pricing](https://apis.io/plans/hawksoft/hawksoft-plans-pricing/)
 
-## Realtime / WebSocket
+#### Rate limits (1)
 
-HawkSoft does **not** expose a documented public WebSocket API. The Partner API is request/response REST over HTTPS; partners keep data in sync by polling the changed-clients endpoint with a `since` timestamp, not by subscribing to a realtime stream. See `review.yml`.
+Published request limits.
 
-## Pricing
+- [Hawksoft Rate Limits](https://apis.io/rate-limits/hawksoft/hawksoft-rate-limits/)
 
-- **HawkSoft AMS (agency):** per-seat subscription — reported around a base fee plus ~$94 per user per month, starting near $250/month, plus one-time setup and training. Custom-quoted; HawkSoft does not publish exact figures.
-- **Partner API (vendor):** $3,000/year (waivable). See `plans/hawksoft-plans-pricing.yml`.
+#### FinOps (1)
 
-## Tags
+What the API costs to run, by operation.
 
-- Insurance
-- Agency Management System
-- AMS
-- InsurTech
-- Property and Casualty
-- Partner API
-- Gated API
+- [Hawksoft Finops](https://apis.io/finops/hawksoft/hawksoft-finops/)
 
-## Timestamps
+## Where to find this API
 
-- **Created:** 2026-07-10
-- **Modified:** 2026-07-10
-
-## Supporting Artifacts
-
-- [OpenAPI](openapi/hawksoft-openapi.yml)
-- [Plans / Pricing](plans/hawksoft-plans-pricing.yml)
-- [Rate Limits](rate-limits/hawksoft-rate-limits.yml)
-- [FinOps](finops/hawksoft-finops.yml)
-- [Review](review.yml)
-
-## Common Properties
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
 
 - [Website](https://www.hawksoft.com)
-- [LinkedIn](https://www.linkedin.com/company/hawksoft-inc-)
-- [Partner API Documentation](https://partner.hawksoft.app/)
-- [Partner Program / Sign Up](https://www.hawksoft.com/about/partners/)
-- [API Terms of Service](https://www.hawksoft.com/terms/api/)
+- [Documentation](https://partner.hawksoft.app/)
+- [Sign up](https://www.hawksoft.com/about/partners/)
 - [Blog](https://blog.hawksoft.com/)
+- [Terms of service](https://www.hawksoft.com/terms/api/)
 
-## Maintainers
+## API Evangelist rating
 
-**FN:** Kin Lane
-**Email:** kin@apievangelist.com
+**Kin Score 30.3** — thin · rubric 0.24.0 · scored 2026-10-17
+
+| Facet | Score |
+|---|---|
+| Discoverability | 66.1 |
+| Contract quality | 47.3 |
+| Contract governance | 0.0 |
+| Operational transparency | 7.9 |
+| Developer ergonomics | 31.0 |
+| Access clarity | 28.9 |
+
+**Agent readiness 17.9** — agent-aware
+
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | — |
+| OpenAPI Examples | — |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+
+**Regulatory alignment 14.0** — Insurance
+
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/hawksoft/](https://apis.io/providers/hawksoft/).
+
+## How this profile is made
+
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
+
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for HawkSoft: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
+
+## Open an issue
+
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/hawksoft/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
